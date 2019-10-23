@@ -15,8 +15,8 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
-var port = process.env.PORT || 8080;
-
+// var port = process.env.PORT || 8080;
+var port =  3000;
 app.use(express.static(__dirname));
 
 app.get('/',function(req,res){
