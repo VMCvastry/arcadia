@@ -1,8 +1,8 @@
 var express = require('express')
 var app=express()
 var bodyParser= require('body-parser')
-
-// var Event= require('./jsoncreator.js')
+var fs= require('fs')
+var Event= require('./jsoncreator.js')
 var eventi= require('./eventi.json')
 
 
@@ -25,29 +25,37 @@ app.get('/',function(req,res){
 
 
 
-// app.post('/eventim', function(req,res){
-//     var evento = new Eventi()
-//     evento.titolo= req.body.titolo
-//     evento.immagine= req.body.immagine
-//     evento.testo= req.body.testo
-//     evento.date= req.body.date
-//     evento.save(function(err,saved){
-//         if (err){
-//             res.status(500).send({error:'not saved'})
-//         }else{
-            
-//             Eventi.find({},function(err,evento){
-//                 if (err){
-//                     res.status(500).send({error:'not find'})
-//                 }else{
-//                     // exports.getdata=  evento
+app.post('/eventim', function(req,res){
+    new Event()
+    var evento = new Event(req.body.titolo,req.body.immagine,req.body.testo,req.body.date)
+    
+        
+        if (typeof evento == 'undefined'){
+            res.status(500).send({error:'evento not created'})
+        }else{
+            fs.readFile('sass/arcadia/eventi.json', 'utf8', function readFileCallback(err, data){
+                if (err){
+                    res.status(500).send({error:'evento not saved',err});
+                } else {
                     
-//                     res.status(200).send(evento)
-//                 }
-//             })
-//         }
-//     })
-// })
+                obj = JSON.parse(data); 
+                obj.push(evento); 
+                
+                json = JSON.stringify(obj); 
+                fs.writeFile('sass/arcadia/eventi.json', json, 'utf8', function callback(err,result){
+                    if (err){
+                        res.status(500).send({error:'evento not written',err});
+                    }else{
+                        res.status(200).send(obj) 
+                    }
+                }); 
+                
+            }})
+            
+                    
+                
+            }
+        })
 
 app.get('/eventim',function(req,res){
     

@@ -1,8 +1,8 @@
 var express = require('express')
 var app=express()
 var bodyParser= require('body-parser')
-
-// var Event= require('./jsoncreator.js')
+var fs= require('fs')
+var Event= require('./jsoncreator.js')
 var eventi= require('./eventi.json')
 
 
@@ -10,7 +10,9 @@ console.log(eventi)
 
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 
 
 app.engine('html', require('ejs').renderFile);
@@ -19,50 +21,65 @@ var port = process.env.PORT || 8080;
 
 app.use(express.static(__dirname));
 
-app.get('/',function(req,res){
+app.get('/', function (req, res) {
     res.render("index.html")
 })
 
 
 
-// app.post('/eventim', function(req,res){
-//     var evento = new Eventi()
-//     evento.titolo= req.body.titolo
-//     evento.immagine= req.body.immagine
-//     evento.testo= req.body.testo
-//     evento.date= req.body.date
-//     evento.save(function(err,saved){
-//         if (err){
-//             res.status(500).send({error:'not saved'})
-//         }else{
-            
-//             Eventi.find({},function(err,evento){
-//                 if (err){
-//                     res.status(500).send({error:'not find'})
-//                 }else{
-//                     // exports.getdata=  evento
-                    
-//                     res.status(200).send(evento)
-//                 }
-//             })
-//         }
-//     })
-// })
-
-app.get('/eventim',function(req,res){
-    
-        if (typeof eventi !== 'undefined' && eventi.length > 0){
-            res.status(200).send(eventi)
-            
-        }else{
-            res.status(500).send({error:'not find'})
-        }
-    })
+app.post('/eventim', function (req, res) {
+    new Event()
+    var evento = new Event(req.body.titolo, req.body.immagine, req.body.testo, req.body.date)
 
 
+    if (typeof evento == 'undefined') {
+        res.status(500).send({
+            error: 'evento not created'
+        })
+    } else {
+        fs.readFile('./eventi.json', 'utf8', function readFileCallback(err, data) {
+            if (err) {
+                res.status(500).send({
+                    error: 'evento not saved',
+                    err
+                });
+            } else {
+
+                obj = JSON.parse(data);
+                obj.unshift(evento);
+
+                json = JSON.stringify(obj);
+                fs.writeFile('./eventi.json', json, 'utf8', function callback(err, result) {
+                    if (err) {
+                        res.status(500).send({
+                            error: 'evento not written',
+                            err
+                        });
+                    } else {
+                        eventi= require('./eventi.json')
+                        res.status(200).send(obj)
+                    }});
+            }
+        })
+    }
+})
+
+app.get('/eventim', function (req, res) {
+
+    if (typeof eventi !== 'undefined' && eventi.length > 0) {
+        res.status(200).send(eventi)
+
+    } else {
+        res.status(500).send({
+            error: 'not find'
+        })
+    }
+})
 
 
 
-app.listen(port,function(){
+
+
+app.listen(port, function () {
     console.log('app running')
 })

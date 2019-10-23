@@ -9,7 +9,8 @@ function httpGet(theUrl)
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-eventsobj=JSON.parse(httpGet('https://arcadia-test.herokuapp.com/eventim'))
+// eventsobj=JSON.parse(httpGet('https://arcadia-test.herokuapp.com/eventim'))
+eventsobj=JSON.parse(httpGet('http://localhost:5000/eventim'))
 console.log(eventsobj)
 console.log('got')
  

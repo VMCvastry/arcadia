@@ -1,4 +1,4 @@
-export default class Evento{
+module.exports=    class Evento{
     constructor(titolo,immagine,testo,date){
         this.titolo= titolo
         this.immagine= immagine
