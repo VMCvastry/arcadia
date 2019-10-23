@@ -3,11 +3,20 @@ var app=express()
 var bodyParser= require('body-parser')
 var fs= require('fs')
 var Event= require('./jsoncreator.js')
-var eventi= require('./eventi.json')
+var SelfReloadJSON = require('self-reload-json');
+var eventi= new SelfReloadJSON('./eventi.json')
+// fs.readFile('./eventi.json', 'utf8', (err, data) => {
+//     if (err){
+//       console.log(err)}
+//     else{
+//         eventi=(JSON.parse(data))}
+      
+//   })
 
 
-console.log(eventi)
+//JSON.parse(fs.readFile("./eventi.json"));
 
+// console.log("casa",eventi)
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
@@ -56,12 +65,12 @@ app.post('/eventim', function (req, res) {
                             err
                         });
                     } else {
-                        eventi= require('./eventi.json')
+                        
                         res.status(200).send(obj)
                     }});
             }
-        })
-    }
+        });
+    };
 })
 
 app.get('/eventim', function (req, res) {
@@ -83,3 +92,4 @@ app.get('/eventim', function (req, res) {
 app.listen(port, function () {
     console.log('app running')
 })
+

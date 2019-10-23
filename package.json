@@ -13,6 +13,7 @@
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
-    "mongoose": "^5.7.5"
+    "mongoose": "^5.7.5",
+    "self-reload-json": "^0.4.0"
   }
 }
