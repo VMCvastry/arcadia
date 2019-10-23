@@ -11,7 +11,20 @@ var Eventi= require('./model/eventi')
 
 
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
+app.use(bodyParser.urlencoded({extended:false}));
+
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+var port = process.env.PORT || 8080;
+
+app.use(express.static(__dirname));
+
+app.get('/',function(req,res){
+    res.render("index.html")
+})
+
+
 
 app.post('/eventim', function(req,res){
     var evento = new Eventi()
@@ -50,7 +63,6 @@ app.get('/eventim',function(req,res){
 
 
 
-
-app.listen(3000,function(){
-    console.log('api rumming')
+app.listen(port,function(){
+    console.log('app running')
 })
