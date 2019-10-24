@@ -12,6 +12,7 @@
 //eventsobj=JSON.parse(httpGet('https://arcadia-test.herokuapp.com/eventim'))
 var xmlhttp = new XMLHttpRequest();
 url='https://arcadia-test.herokuapp.com/eventim';
+//url="http://localhost:5000/eventim"
 xmlhttp.onreadystatechange = function() {
    if (this.readyState == 4 && this.status == 200) {
        var myArr = JSON.parse(this.responseText);
@@ -29,7 +30,7 @@ var eventidiv = document.getElementById('eventi');
 var newhtml=''
 for (i=0;i<4;i++){
     var titolo=eventsobj[i].titolo
-    var immagine=eventsobj[i].immagine
+    var immagine="assets/uploads/"+eventsobj[i].immagine
     var testo=eventsobj[i].testo
     var date=eventsobj[i].date
  if (i==0 || i==2){

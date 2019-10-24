@@ -4,6 +4,21 @@ var bodyParser= require('body-parser')
 var fs= require('fs')
 var Event= require('./jsoncreator.js')
 var SelfReloadJSON = require('self-reload-json');
+var multer = require('multer');
+// var upload= multer({dest:'assets/uploads'})
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'assets/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.originalname)
+    }
+  })
+   
+var upload = multer({ storage: storage })
+
+
+
 var eventi= new SelfReloadJSON('./eventi.json')
 // fs.readFile('./eventi.json', 'utf8', (err, data) => {
 //     if (err){
@@ -37,12 +52,24 @@ app.use(function(req, res, next) {
 app.get('/', function (req, res) {
     res.render("index.html")
 })
+app.get('/admin', function (req, res) {
+    res.render("mgm.html")
+})
+
+// app.post('/eventi', upload.single('p'), (req, res) => {
+//     if(req.file) {
+//         res.json(req.file);
+//     }
+//     else throw 'error';
+// });
 
 
 
-app.post('/eventim', function (req, res) {
+
+
+app.post('/eventim',upload.single('p'), function (req, res) {
     new Event()
-    var evento = new Event(req.body.titolo, req.body.immagine, req.body.testo, req.body.date)
+    var evento = new Event(req.body.titolo, req.file.originalname, req.body.testo, req.body.date)
 
 
     if (typeof evento == 'undefined') {
