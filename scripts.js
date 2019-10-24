@@ -1,20 +1,31 @@
 // var source= require('./server.js')
 // var eventsobj= source.getdata
+
+
+// function httpGet(theUrl)
+// {
+//     var xmlHttp = new XMLHttpRequest();
+//     xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+//     xmlHttp.send( null );
+//     return xmlHttp.responseText;
+// }
+//eventsobj=JSON.parse(httpGet('https://arcadia-test.herokuapp.com/eventim'))
+var xmlhttp = new XMLHttpRequest();
+url='https://arcadia-test.herokuapp.com/eventim';
+xmlhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+       var myArr = JSON.parse(this.responseText);
+       loadev(myArr);
+   }
+};
+xmlhttp.open("GET", url, true); 
+xmlhttp.send();
+
+// eventsobj=JSON.parse(httpGet('http://localhost:5000/eventim'))
+// console.log(eventsobj)
+// console.log('got')
+function loadev(eventsobj){
 var eventidiv = document.getElementById('eventi');
-
-function httpGet(theUrl)
-{
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
-eventsobj=JSON.parse(httpGet('https://arcadia-test.herokuapp.com/eventim'))
-//eventsobj=JSON.parse(httpGet('http://localhost:5000/eventim'))
-console.log(eventsobj)
-console.log('got')
- 
-
 var newhtml=''
 for (i=0;i<4;i++){
     var titolo=eventsobj[i].titolo
@@ -29,7 +40,7 @@ for (i=0;i<4;i++){
  }newhtml+=htmltem
 }
 
-eventidiv.innerHTML=newhtml
+eventidiv.innerHTML=newhtml}
 
 
 // {"titolo":"","testo":"","date":"","path":""}
