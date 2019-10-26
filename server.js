@@ -97,7 +97,8 @@ app.post('/eventim',upload.single('p'), function (req, res) {
                         });
                     } else {
                         
-                        res.status(200).send(obj)
+                        // res.status(200).send(obj)
+                        res.status(200).redirect("/")
                     }});
             }
         });
@@ -117,6 +118,44 @@ app.get('/eventim', function (req, res) {
 })
 
 
+app.post('/delevent', function (req, res) {
+    var dest=(req.body.todelete)
+
+    if (typeof dest == 'undefined') {
+        res.status(500).send({
+            error: 'evento not deleted'
+        })
+    } else {
+        fs.readFile('./eventi.json', 'utf8', function readFileCallback(err, data) {
+            if (err) {
+                res.status(500).send({
+                    error: 'evento not deleted',
+                    err
+                });
+            } else {
+                
+                obj = JSON.parse(data);
+                console.log(dest)
+                console.log(parseInt(dest))
+                obj.splice(parseInt(dest),1);
+                
+                json = JSON.stringify(obj);
+                console.log(json)
+                fs.writeFile('./eventi.json', json, 'utf8', function callback(err, result) {
+                    if (err) {
+                        res.status(500).send({
+                            error: 'evento not written',
+                            err
+                        });
+                    } else {
+                        
+                        // res.status(200).send(obj)
+                        res.status(200).redirect("/")
+                    }});
+            }
+        });
+    };
+})
 
 
 

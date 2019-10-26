@@ -11,7 +11,8 @@
 // }
 //eventsobj=JSON.parse(httpGet('https://arcadia-test.herokuapp.com/eventim'))
 var xmlhttp = new XMLHttpRequest();
-url='http://arcadia-test-arcad.apps.ca-central-1.starter.openshift-online.com/eventim';
+url=window.location.origin+'/eventim';
+
 //url="http://localhost:5000/eventim"
 xmlhttp.onreadystatechange = function() {
    if (this.readyState == 4 && this.status == 200) {
