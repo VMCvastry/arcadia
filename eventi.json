@@ -1,1 +1,31 @@
-[{"titolo":"casa","immagine":"extra0.jpg","testo":"cascf","date":"cacsa"},{"titolo":"#Ferragosto a Playa del Mar....","testo":"Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!","date":"21/07/21","immagine":"card0.jpg"},{"titolo":"#Ferragosto a Playa del Mar....","testo":"Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!","date":"21/07/21","immagine":"card1.jpg"},{"titolo":"#Ferragosto a Playa del Mar....","testo":"Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!","date":"21/07/21","immagine":"card2.jpg"},{"titolo":"#Ferragosto a Playa del Mar....","testo":"Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!","date":"21/07/21","immagine":"card3.jpg"},{"titolo":"Pizza margherita","immagine":"card0.jpg","testo":"Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!","date":"21/07/21"}]
+[{
+    "titolo": "Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBAN",
+    "immagine": "extra0.jpg",
+    "testo": "awd",
+    "date": "adawdwa"
+}, {
+    "titolo": "#Ferragosto a Playa del Mar....",
+    "testo": "Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!",
+    "date": "21/07/21",
+    "immagine": "card0.jpg"
+}, {
+    "titolo": "#Ferragosto a Playa del Mar....",
+    "testo": "Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!",
+    "date": "21/07/21",
+    "immagine": "card1.jpg"
+}, {
+    "titolo": "#Ferragosto a Playa del Mar....",
+    "testo": "Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!",
+    "date": "21/07/21",
+    "immagine": "card2.jpg"
+}, {
+    "titolo": "#Ferragosto a Playa del Mar....",
+    "testo": "Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!",
+    "date": "21/07/21",
+    "immagine": "card3.jpg"
+}, {
+    "titolo": "Pizza margherita",
+    "immagine": "card0.jpg",
+    "testo": "Grande festa dalle 10.00 del mattino...PRANZO CON MENÙ CUBANO...Si mangia si beve e si balla!!!!!",
+    "date": "21/07/21"
+}]

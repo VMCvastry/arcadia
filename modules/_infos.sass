@@ -1,0 +1,45 @@
+body 
+    color: $brand-4
+
+
+#ourstory
+    margin: 50px
+    box-shadow: 2px 2px $brand-secondary
+    @extend .borders
+
+.submap
+    .col-md-6
+        
+        text-align: center
+        @extend .borders
+
+#emailsub
+    input
+        background-color: darken($brand-primary, 20%)
+        color: $brand-third
+        border: 1px solid  $brand-third
+        word-break: break-word
+        width: 100%
+        &::-webkit-input-placeholder  
+            color: $brand-third
+    
+    textarea
+        background-color: darken($brand-primary, 20%)
+        color: $brand-third
+        border: 1px solid  $brand-third
+        word-break: break-word
+        width: 100%
+        &::-webkit-input-placeholder  
+            color: $brand-third
+    
+    .btn
+            
+            margin: auto
+            color: $brand-third
+            background-color: $brand-4
+            border:  0
+            margin-bottom: 5px
+            
+            &:hover
+                color: $brand-4 
+                background-color: $brand-third

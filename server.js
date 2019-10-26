@@ -1,8 +1,12 @@
+// npm run watch
+
+
 var express = require('express')
 var app=express()
 var bodyParser= require('body-parser')
 var fs= require('fs')
 var Event= require('./jsoncreator.js')
+var Iscritto= require('./model/submissions.js')
 var SelfReloadJSON = require('self-reload-json');
 var multer = require('multer');
 // var upload= multer({dest:'assets/uploads'})
@@ -15,7 +19,8 @@ var storage = multer.diskStorage({
     }
   })
    
-var upload = multer({ storage: storage })
+var upload = multer({ storage: storage }) 
+var mailer = require('nodemailer')
 
 
 
@@ -50,10 +55,10 @@ app.use(function(req, res, next) {
     next();
 });
 app.get('/', function (req, res) {
-    res.render("index.html")
+    res.redirect("./index.html")
 })
 app.get('/admin', function (req, res) {
-    res.render("mgm.html")
+    res.redirect("./mgm.html")
 })
 
 // app.post('/eventi', upload.single('p'), (req, res) => {
@@ -120,7 +125,7 @@ app.get('/eventim', function (req, res) {
 
 app.post('/delevent', function (req, res) {
     var dest=(req.body.todelete)
-
+    
     if (typeof dest == 'undefined') {
         res.status(500).send({
             error: 'evento not deleted'
@@ -157,7 +162,70 @@ app.post('/delevent', function (req, res) {
     };
 })
 
+app.post('/submissions', function (req, res) {
+    
+    var iscritto = new Iscritto(req.body.nome, req.body.email, req.body.messaggio)
+    console.log(iscritto)
 
+    if (typeof iscritto == 'undefined') {
+        res.status(500).send({
+            error: 'iscritto non found'
+        })
+    } else {
+        if (iscritto.messaggio){
+            
+            let transporter = mailer.createTransport({
+                host: 'smtp.gmail.com',
+                port: 465,
+                secure: true,
+                auth: {
+                    user: 'vmcompany404@gmail.com',
+                    pass: 'Patrino1'
+                }
+            });
+            let mailOptions = {
+                from: 'Arcadia Utente ', // sender address
+                to: "008valerio@libero.it", // list of receivers
+                subject: "messaggio Cliente", // Subject line
+                // text:`<b>${JSON.stringify(iscritto)}</b>`, // plain text body
+                html: `<b>${JSON.stringify(iscritto.nome)}<br>${(iscritto.email)} <br> <br>${JSON.stringify(iscritto.messaggio)}</b>` // html body
+            };
+      
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    return console.log(error);
+                }
+                
+                res.send(info);
+                });
+        }delete iscritto.messaggio
+        fs.readFile('./iscritti.json', 'utf8', function readFileCallback(err, data) {
+            if (err) {
+                res.status(500).send({
+                    error: 'iscritto not saved',
+                    err
+                });
+            } else {
+
+                obj = JSON.parse(data);
+                obj.unshift(iscritto);
+
+                json = JSON.stringify(obj);
+                fs.writeFile('./iscritti.json', json, 'utf8', function callback(err, result) {
+                    if (err) {
+                        res.status(500).send({
+                            error: 'iscritto not written',
+                            err
+                        });
+                    } else {
+                        
+                        // res.status(200).send(obj)
+                        res.status(200).redirect("/success.html")
+                    }});
+            }
+        });
+    };
+})
 
 app.listen(port, function () {
     console.log('app running')
