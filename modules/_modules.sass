@@ -3,10 +3,11 @@
         display: block
         margin: auto
         max-width: 960px
-
+        
         padding: 2px 0px 5px
         
-        
+        .navbar-toggler
+            margin: 0px 10px 10px
         ul
             margin: 0
             padding: 0
@@ -35,9 +36,8 @@
         max-width: 960px
         margin-left:  0px
         .col-md-4
-            flex: 0 0 33.333334%
-            max-width: 320px
-            height: 320px
+            padding: 0
+            // height: 320px
             @extend .borders
             text-align: center
             p 
@@ -47,7 +47,15 @@
                 color: $brand-hover
                 background-color: rgba(0,0,0 ,0.5 )
                 border-radius: 5px
+                position: absolute
+                top: 35%
+                left: 50%
+                transform: translate(-50%, -50%)
 
+
+        .extra-img
+            width: 100%
+            height: 100%
 
 
 #eventibig
@@ -104,6 +112,7 @@
 
 #social
     margin-top: 10px
+    padding-bottom: 20px
     a 
         
         display: block
@@ -132,5 +141,11 @@
 @media (max-width: 767px) 
     #main-nav ul li a                     
         text-align: center
+    #main-nav #titolopagina
+        display: inline-block !important
+        margin: auto
+        padding: 10px
     
-    
+    #extra .row .col-md-4 
+        p 
+            font-size: 15vw;

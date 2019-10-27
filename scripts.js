@@ -35,10 +35,10 @@ for (i=0;i<4;i++){
     var testo=eventsobj[i].testo
     var date=eventsobj[i].date
  if (i==0 || i==2){
-    htmltem = `<div class="card mb-3" id='carta' ><div class="row no-gutters"><div class="col-md-4"><img src=${immagine} class="card-img" alt="..."></div>    <div class="col-md-8">        <div class="card-body">            <h5 class="card-title">${titolo}</h5>            <p class="card-text">${testo}</p>            <p class="card-text" id='small'><small class="text-muted">${date}</small></p>        </div>   </div></div></div>`
+    htmltem = `<div class="card mb-3  col-md-12" id='carta' ><div class="row no-gutters"><div class="col-md-4"><img src=${immagine} class="card-img" alt="..."></div>    <div class="col-md-8">        <div class="card-body">            <h5 class="card-title">${titolo}</h5>            <p class="card-text">${testo}</p>            <p class="card-text" id='small'><small class="text-muted">${date}</small></p>        </div>   </div></div></div>`
 
  }else{
-    htmltem = `<div class="card mb-3" id='carta'><div class="row no-gutters">    <div class="col-md-8">        <div class="card-body">            <h5 class="card-title">${titolo}</h5>            <p class="card-text">${testo}</p>            <p class="card-text" id='small'><small class="text-muted">${date}</small></p>        </div>    </div>    <div class="col-md-4">        <img src=${immagine} class="card-img" alt="...">    </div></div></div>`
+    htmltem = `<div class="card mb-3  col-md-12" id='carta'><div class="row no-gutters">    <div class="col-md-8">        <div class="card-body">            <h5 class="card-title">${titolo}</h5>            <p class="card-text">${testo}</p>            <p class="card-text" id='small'><small class="text-muted">${date}</small></p>        </div>    </div>    <div class="col-md-4">        <img src=${immagine} class="card-img" alt="...">    </div></div></div>`
  }newhtml+=htmltem
 }
 
