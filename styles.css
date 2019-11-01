@@ -250,7 +250,6 @@ body footer {
 
 .adminbox {
   background-color: #8f306f;
-  margin-top: -60px;
   color: #431634;
   font-size: 1em;
   min-width: 400px;
@@ -264,6 +263,10 @@ body footer {
   color: #d800ff;
   background-color: #431634;
   text-decoration: none;
+}
+
+.container {
+  text-align: center;
 }
 
 #delevent {
@@ -320,6 +323,31 @@ body footer {
 #addevent #addtesto {
   width: 90%;
   height: 150px;
+}
+
+#logbox input {
+  margin: 5px;
+  background-color: #431634;
+  color: #d800ff;
+  border: 1px solid #d800ff;
+  word-break: break-word;
+}
+
+#logbox input::-webkit-input-placeholder {
+  color: #d800ff;
+}
+
+#logbox .btn {
+  margin: 10px 15px;
+  display: inline-block;
+  color: #431634;
+  background-color: #d800ff;
+  border: 0;
+}
+
+#logbox .btn:hover {
+  color: #d800ff;
+  background-color: #431634;
 }
 
 body {

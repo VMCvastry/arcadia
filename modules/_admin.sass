@@ -1,6 +1,6 @@
 .adminbox
     background-color: $brand-primary
-    margin-top: -60px
+    
     color: $brand-4
     font-size: 1em
     
@@ -13,7 +13,8 @@
                 background-color: $brand-4 
                 text-decoration: none
     
-    
+.container 
+    text-align: center
     
 #delevent
     
@@ -62,4 +63,24 @@
     #addtesto
         width: 90%
         height: 150px
-  
+
+#logbox
+    input
+        
+        margin: 5px
+        background-color: darken($brand-primary, 20%)
+        color: $brand-third
+        border: 1px solid  $brand-third
+        word-break: break-word
+        &::-webkit-input-placeholder  
+            color: $brand-third
+    .btn
+            margin: 10px 15px
+            display: inline-block
+            color: $brand-4
+            background-color: $brand-third
+            border:  0
+            
+            &:hover
+                color: $brand-third
+                background-color: $brand-4 

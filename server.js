@@ -9,6 +9,7 @@ var Event= require('./jsoncreator.js')
 var Iscritto= require('./model/submissions.js')
 var SelfReloadJSON = require('self-reload-json');
 var multer = require('multer');
+const bcrypt= require('bcrypt')
 // var upload= multer({dest:'assets/uploads'})
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -58,7 +59,7 @@ app.get('/', function (req, res) {
     res.redirect("./index.html")
 })
 app.get('/admin', function (req, res) {
-    res.redirect("./mgm.html")
+    res.redirect("./login.html")
 })
 
 // app.post('/eventi', upload.single('p'), (req, res) => {
@@ -227,7 +228,49 @@ app.post('/submissions', function (req, res) {
     };
 })
 
+app.get('/correct', function (req, res) { 
+    console.log('fucl')
+
+    res.status(200).send(false)
+})
+app.post('/pass',async function (req, res) {
+       
+        // console.log(await bcrypt.hash(req.body.passwd,10))
+        
+       if(await bcrypt.compare(req.body.passwd,'$2b$10$FTtPipD1jW6wkhFrc2pZOO1ZgOvXg5TVrGJvx8euhO/devLl.aM2e')){
+        
+        res.status(200).redirect('./mgm.html')
+       }else{
+           
+           res.status(200).redirect('/login.html')
+       }
+            }
+     
+)
+
+
+// app.get('/mgm(?:\.html)?$/', function (req, res) { 
+//     console.log('fucl')
+
+//     res.status(200).redirect("/success.html")
+// })
+
+
+
+
+
 app.listen(port, function () {
     console.log('app running')
 })
 
+
+
+
+// app.use(function(req, res, next) {
+//     if (req.session.user == null){
+// // if user is not logged-in redirect back to login page //
+//         res.redirect('/');
+//     }   else{
+//         next();
+//     }
+// });
